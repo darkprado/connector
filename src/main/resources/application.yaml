@@ -1,3 +1,35 @@
 spring:
   application:
     name: connector
+  datasource:
+    url: jdbc:postgresql://localhost:5432/darkpradoDB
+    username: darkprado
+    password: darkpass
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+    jpa:
+      hibernate:
+        ddl-auto: validate
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          format_sql: true
+          jdbc:
+            batch_size: 20
+          order_inserts: true
+          order_updates: true
+      show-sql: true
+      open-in-view: false
+
+    sql:
+      init:
+        mode: always
+
+server:
+  port: 8081
